@@ -9,5 +9,41 @@
  */
 
 {
+    "envs/mui5-env": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "zone-ui/envs/mui5-env",
+        "config": {
+            "teambit.envs/env": {},
+            "teambit.envs/envs": {
+                "env": "teambit.envs/env"
+            }
+        }
+    },
+    "theme": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "zone-ui/theme",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "ui/atoms/button": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "zone-ui/ui/atoms/button",
+        "config": {
+            "watheia.zone-ui/envs/mui5-env": {},
+            "teambit.envs/envs": {
+                "env": "watheia.zone-ui/envs/mui5-env"
+            }
+        }
+    },
     "$schema-version": "15.0.0"
 }
