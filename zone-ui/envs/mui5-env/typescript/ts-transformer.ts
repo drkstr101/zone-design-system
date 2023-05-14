@@ -1,9 +1,9 @@
 
-  import * as path from 'path';
-import {
+  import {
   TsConfigTransformer,
   TypescriptConfigMutator,
 } from "@teambit/typescript";
+import * as path from 'path';
 
 const tsConfig = require('./tsconfig.json');
 
@@ -13,8 +13,8 @@ export const commonTransformer: TsConfigTransformer = (
   const newConfig = config.addTypes([path.join(__dirname, 'styles.d.ts')])
   newConfig.mergeTsConfig(tsConfig);
   // Some examples of other built in mutator functions:
-  //newConfig.addExclude(['someExclude']);
-  //newConfig.setCompileJs(true)
+  // newConfig.addExclude(['someExclude']);
+  // newConfig.setCompileJs(true)
   return newConfig;
 };
 

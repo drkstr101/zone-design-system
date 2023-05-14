@@ -1,15 +1,15 @@
 import { MainRuntime } from '@teambit/cli';
-import { ReactAspect, ReactMain, UseTypescriptModifiers } from '@teambit/react';
 import { EnvsAspect, EnvsMain } from '@teambit/envs';
+import { ReactAspect, ReactMain, UseTypescriptModifiers } from '@teambit/react';
 import { Mui5EnvAspect } from './mui5-env.aspect';
-//import {
-//  previewConfigTransformer,
-//  devServerConfigTransformer
-//} from './webpack/webpack-transformers';
-//import {
-//  devConfigTransformer,
-//  buildConfigTransformer,
-//} from "./typescript/ts-transformer";
+// import {
+//   previewConfigTransformer,
+//   devServerConfigTransformer
+// } from './webpack/webpack-transformers';
+import {
+  buildConfigTransformer,
+  devConfigTransformer,
+} from './typescript/ts-transformer';
 
 export class Mui5EnvMain {
   static slots = [];
@@ -19,16 +19,15 @@ export class Mui5EnvMain {
   static runtime = MainRuntime;
 
   static async provider([react, envs]: [ReactMain, EnvsMain]) {
+    // const webpackModifiers: UseWebpackModifiers = {
+    //   previewConfig: [previewConfigTransformer],
+    //   devServerConfig: [devServerConfigTransformer],
+    // };
 
-    //const webpackModifiers: UseWebpackModifiers = {
-      //  previewConfig: [previewConfigTransformer],
-      //  devServerConfig: [devServerConfigTransformer],
-    //};
-
-    //const tsModifiers: UseTypescriptModifiers = {
-      //  devConfig: [devConfigTransformer],
-      //  buildConfig: [buildConfigTransformer],
-    //};
+    const tsModifiers: UseTypescriptModifiers = {
+      devConfig: [devConfigTransformer],
+      buildConfig: [buildConfigTransformer],
+    };
 
     const Mui5EnvEnv = react.compose([
       /**
@@ -36,7 +35,7 @@ export class Mui5EnvMain {
        * Your config gets merged with the defaults
        */
 
-      // react.useTypescript(tsModifiers),  // note: this cannot be used in conjunction with react.overrideCompiler
+      react.useTypescript(tsModifiers), // note: this cannot be used in conjunction with react.overrideCompiler
       // react.useWebpack(webpackModifiers),
       // react.overrideJestConfig(require.resolve('./jest/jest.config')),
 
@@ -46,14 +45,19 @@ export class Mui5EnvMain {
        * bit lint
        * bit lint --fix
        */
-      //react.useEslint({
-      //  transformers: [
-      //  (config) => {
-      //    config.setRule('no-console', ['error']);
-      //    return config;
-      //    }
-      //  ]
-      //}),
+      // react.useEslint({
+      //   transformers: [
+      //     (config) => {
+      //       config.addExtends([
+      //         'airbnb',
+      //         'airbnb-typescript',
+      //         'airbnb/hooks',
+      //         'prettier',
+      //       ]);
+      //       return config;
+      //     },
+      //   ],
+      // }),
 
       /**
        * override the Prettier default config here the check your formatting
@@ -61,14 +65,14 @@ export class Mui5EnvMain {
        * bit format --check
        * bit format
        */
-      //react.usePrettier({
-      //  transformers: [
-      //    (config) => {
-      //      config.setKey('tabWidth', 2);
-      //      return config;
-      //    }
-      //  ]
-      //}),
+      // react.usePrettier({
+      //   transformers: [
+      //     (config) => {
+      //       config.setKey('tabWidth', 2);
+      //       return config;
+      //     }
+      //   ]
+      // }),
 
       /**
        * override dependencies here
@@ -78,8 +82,8 @@ export class Mui5EnvMain {
       react.overrideDependencies({
         devDependencies: {
           // '@types/react': '17.0.3'
-        }
-      })
+        },
+      }),
     ]);
     envs.registerEnv(Mui5EnvEnv);
     return new Mui5EnvMain();

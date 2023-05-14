@@ -1,18 +1,27 @@
 {
-  // add your compiler options here
-
+  "extends": "@teambit/react/typescript/tsconfig.json",
   "compilerOptions": {
-    // "target": "es2017",
-    // "module": "es2015",
-    // "moduleResolution": "node",
-    // "lib": ["es2017", "dom"],
-    // "experimentalDecorators": true,
-    // "esModuleInterop": true,
-    // "outDir": "dist",
-    // "sourceMap": true,
-    // "emitDecoratorMetadata": true,
-    // "allowJs": true,
-    // "baseUrl": ".",
-    // "jsx": "react"
+    "lib": [
+      "ESNext",
+      "DOM",
+      "ES6",
+      "DOM.Iterable"
+    ],
+    "target": "ES2015",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "isolatedModules": true,
+    "strictNullChecks": true
   }
 }
