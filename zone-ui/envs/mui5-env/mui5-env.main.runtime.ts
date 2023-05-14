@@ -80,8 +80,10 @@ export class Mui5EnvMain {
        * Uncomment types to include version 17.0.3 of the types package
        */
       react.overrideDependencies({
-        devDependencies: {
-          // '@types/react': '17.0.3'
+        peerDependencies: {
+          '@emotion/react': '^11.0.0',
+          '@emotion/styled': '^11.0.0',
+          '@mui/material': '^5.0.0'
         },
       }),
     ]);

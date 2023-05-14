@@ -4,8 +4,10 @@ labels: ['context']
 ---
 
 import { ThemeContext } from './theme-context';
-import { ThemeProvider } from './theme-context-provider';
-import { MockComponent } from './theme-context.composition';
+import { ThemeProvider } from './theme-provider';
+import { useContext } from 'react';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
 
 ## React Theme Context
 
@@ -17,24 +19,26 @@ Use this component to apply a theme as a context to set on it's children.
 ```tsx
 () => {
 import React, { useContext } from 'react';
-import { ThemeProvider } from './theme-context-provider';
+import { ThemeProvider } from './theme-provider';
 import { ThemeContext } from './theme-context';
 
 <ThemeProvider themeMode="light">
-  // My lovely children now get a theme!
   <MockComponent />
 </ThemeProvider>;
 ```
 
 ### Using props to customize the theme
 
-Change the themeMode to see the text change:
+Change the themeMode to see the palette change:
 
 ```tsx live
 () => {
+  const theme = useContext(ThemeContext);
   return (
     <ThemeProvider themeMode="dark">
-      <MockComponent />
+      <Paper sx={{ padding: 4 }}>
+        <Button>this should be {theme.themeMode}</Button>
+      </Paper>
     </ThemeProvider>
   );
 };
