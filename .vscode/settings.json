@@ -9,5 +9,6 @@
     "simplebar",
     "stylis",
     "teambit"
-  ]
+  ],
+  "jest.jestCommandLine": "bit test"
 }
