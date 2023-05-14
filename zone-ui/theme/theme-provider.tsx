@@ -1,3 +1,5 @@
+/// <reference path="mui5-types.d.ts" />
+
 import { CssBaseline } from '@mui/material';
 import {
   ThemeProvider as MUIThemeProvider,
@@ -5,9 +7,13 @@ import {
   createTheme,
 } from '@mui/material/styles';
 import React, { ReactNode, useMemo } from 'react';
+import customShadows from './customShadows';
 import GlobalStyles from './global-styles';
 import overrideComponents from './overrides';
+import palette from './palette';
+import shadows from './shadows';
 import { ThemeContext } from './theme-context';
+import typography from './typography';
 
 export type ThemeProviderProps = {
   /**
@@ -33,14 +39,12 @@ export function ThemeProvider({
 }: ThemeProviderProps) {
   const themeOptions: ThemeOptions = useMemo(
     () => ({
-      palette: { mode: themeMode },
+      palette: palette(themeMode),
+      typography,
+      shape: { borderRadius: 8 },
       direction: themeDirection,
-      // palette: palette(themeMode),
-      // typography,
-      // shape: { borderRadius: 8 },
-      // direction: themeDirection,
-      // shadows: shadows(themeMode),
-      // customShadows: customShadows(themeMode),
+      shadows: shadows(themeMode),
+      customShadows: customShadows(themeMode),
     }),
     [themeDirection, themeMode]
   );
